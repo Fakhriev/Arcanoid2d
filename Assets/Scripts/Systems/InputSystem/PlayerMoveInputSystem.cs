@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Mathematics;
 
-public class PlayerInputSystem : SystemBase
+public class PlayerMoveInputSystem : SystemBase
 {
     protected override void OnStartRunning()
     {
-        Entities.ForEach((in Movable movable, in Player player, in PlayerInput playerInput) => {
+        Entities.ForEach((in Player player, in InputData inputData, in PlayerInput playerInput) => {
 
             playerInput.actions.FindAction("Move").performed += context => Move(context.ReadValue<Vector2>());
 
@@ -22,11 +22,9 @@ public class PlayerInputSystem : SystemBase
 
     private void Move(Vector2 direction)
     {
-        Debug.Log($"{UnityEngine.Time.time}: {direction}");
+        Entities.ForEach((ref InputData inputData, in Player player) => {
 
-        Entities.ForEach((ref Movable movable, in Player player, in PlayerInput playerInput) => {
-
-            movable.velocityVector = math.float3(direction.x, direction.y, 0);
+            inputData.moveInput = math.float3(direction.x, direction.y, 0);
 
         }).WithoutBurst().Run();
     }

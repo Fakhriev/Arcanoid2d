@@ -13,7 +13,7 @@ public class MovementSystem : SystemBase
         
         Entities.ForEach((ref Translation translation, in Movable movable) => {
 
-            translation.Value += movable.velocityVector * deltaTime;
+            translation.Value += movable.moveVector * movable.speed * deltaTime;
 
         }).Schedule();
     }
