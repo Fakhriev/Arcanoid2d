@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Mathematics;
 
-public class PlayerMoveInputSystem : SystemBase
+public class PlayerMovementInput : SystemBase
 {
     protected override void OnStartRunning()
     {
         Entities.ForEach((in Player player, in InputData inputData, in PlayerInput playerInput) => {
 
-            playerInput.actions.FindAction("Move").performed += context => Move(context.ReadValue<Vector2>());
+            playerInput.actions.FindAction("Movement").performed += context => Move(context.ReadValue<Vector2>());
 
         }).WithoutBurst().Run();
     }

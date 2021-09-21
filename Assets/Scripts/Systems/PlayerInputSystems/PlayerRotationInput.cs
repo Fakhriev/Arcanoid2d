@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Mathematics;
 
-public class PlayerRotateInputSystem : SystemBase
+public class PlayerRotationInput : SystemBase
 {
     protected override void OnStartRunning()
     {
