@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f801507e9216c4189d1c7aaa0ab97d, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  flySpeed: 4
+  acceleration: 2
+  maximumSpeed: 7.5
+  deaccelerationSpeed: 2.5
+  stopThreshold: 0.1
   rotationSpeed: 3.5

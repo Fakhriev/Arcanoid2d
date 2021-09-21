@@ -4,6 +4,6 @@ using Unity.Mathematics;
 [GenerateAuthoringComponent]
 public struct Rotative : IComponentData
 {
-    public float3 eulerRotation;
+    public float3 rotateDirection;
     public float rotationSpeed;
 }

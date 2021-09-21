@@ -11,7 +11,7 @@ public class InputToEulerRotationSystem : SystemBase
     {
         Entities.ForEach((ref Rotative rotative, in InputData inputData) => {
 
-            rotative.eulerRotation = new float3(0, 0, inputData.rotationInput.z);
+            rotative.rotateDirection = new float3(0, 0, inputData.rotationInput.z);
 
         }).Schedule();
     }

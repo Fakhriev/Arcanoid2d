@@ -1,5 +1,4 @@
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -9,13 +8,23 @@ public class PlayerStatsAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        Movable movable = dstManager.GetComponentData<Movable>(entity);
+        Velocity velocity = dstManager.GetComponentData<Velocity>(entity);
         Rotative rotative = dstManager.GetComponentData<Rotative>(entity);
 
-        movable.speed = PlayerStats.FlySpeed;
+        VelocityAcceleration velocityAcceleration = dstManager.GetComponentData<VelocityAcceleration>(entity);
+        VelocityDeacceleration velocityDeacceleration = dstManager.GetComponentData<VelocityDeacceleration>(entity);
+
+        velocity.maximum = PlayerStats.MaximumSpeed;
         rotative.rotationSpeed = PlayerStats.RotationSpeed;
 
-        dstManager.SetComponentData(entity, movable);
+        velocityAcceleration.speed = PlayerStats.Acceleration;
+        velocityDeacceleration.speed = PlayerStats.DeaccelerationSpeed;
+        velocityDeacceleration.stopThreshold = PlayerStats.StopThreshold;
+
+        dstManager.SetComponentData(entity, velocity);
         dstManager.SetComponentData(entity, rotative);
+
+        dstManager.SetComponentData(entity, velocityAcceleration);
+        dstManager.SetComponentData(entity, velocityDeacceleration);
     }
 }
