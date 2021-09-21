@@ -3,7 +3,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class RotateSystem : SystemBase
+public class RotationSystem : SystemBase
 {
     protected override void OnUpdate()
     {

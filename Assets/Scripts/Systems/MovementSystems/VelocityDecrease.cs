@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 
-public class VelocityDecreaseSystem : SystemBase
+public class VelocityDecrease : SystemBase
 {
     protected override void OnUpdate()
     {

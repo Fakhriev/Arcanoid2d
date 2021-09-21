@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
 
-public class VelocityMovementSystem : SystemBase
+public class VelocityMovement : SystemBase
 {
     protected override void OnUpdate()
     {
