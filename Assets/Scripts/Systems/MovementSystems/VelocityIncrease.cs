@@ -8,7 +8,9 @@ public class VelocityIncrease : SystemBase
     {
         float deltaTime = Time.DeltaTime;
 
-        Entities.ForEach((ref Velocity velocity, in VelocityAcceleration velocityAcceleration) => {
+        Entities
+            .WithNone<InertiaResistance>()
+            .ForEach((ref Velocity velocity, in VelocityAcceleration velocityAcceleration) => {
 
             if (velocity.isDecreasing == false)
             {

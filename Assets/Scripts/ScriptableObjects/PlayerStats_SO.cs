@@ -6,6 +6,7 @@ public class PlayerStats_SO : ScriptableObject
     [Header("Movement Parametres")]
     [SerializeField] private float acceleration;
     [SerializeField] private float maximumSpeed;
+    [SerializeField] private float maximumInertiaResistance;
 
     [Header("Stop Parametres")]
     [SerializeField] private float deaccelerationSpeed;
@@ -27,6 +28,14 @@ public class PlayerStats_SO : ScriptableObject
         get
         {
             return maximumSpeed;
+        }
+    }
+
+    public float MaximumInertiaResistance
+    {
+        get
+        {
+            return maximumInertiaResistance;
         }
     }
 

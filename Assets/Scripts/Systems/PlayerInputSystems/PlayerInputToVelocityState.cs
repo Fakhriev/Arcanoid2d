@@ -27,7 +27,7 @@ public class PlayerInputToVelocityState : SystemBase
 
             if (inputData.moveInput.y < 0 && velocity.isDecreasing == false)
             {
-                velocity.isDecreasing = true;
+                //velocity.isDecreasing = true;
             }
 
         }).Schedule();

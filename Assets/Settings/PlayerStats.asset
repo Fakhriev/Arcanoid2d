@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 2
   maximumSpeed: 7.5
+  maximumInertiaResistance: 4
   deaccelerationSpeed: 2.5
   stopThreshold: 0.1
   rotationSpeed: 3.5

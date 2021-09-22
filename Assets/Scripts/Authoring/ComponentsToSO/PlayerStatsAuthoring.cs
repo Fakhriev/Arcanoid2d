@@ -8,23 +8,40 @@ public class PlayerStatsAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        Velocity velocity = dstManager.GetComponentData<Velocity>(entity);
-        Rotative rotative = dstManager.GetComponentData<Rotative>(entity);
+        if(dstManager.HasComponent<Velocity>(entity))
+        {
+            Velocity velocity = dstManager.GetComponentData<Velocity>(entity);
+            velocity.maximum = PlayerStats.MaximumSpeed;
+            dstManager.SetComponentData(entity, velocity);
+        }
 
-        VelocityAcceleration velocityAcceleration = dstManager.GetComponentData<VelocityAcceleration>(entity);
-        VelocityDeacceleration velocityDeacceleration = dstManager.GetComponentData<VelocityDeacceleration>(entity);
+        if (dstManager.HasComponent<Rotative>(entity))
+        {
+            Rotative rotative = dstManager.GetComponentData<Rotative>(entity);
+            rotative.rotationSpeed = PlayerStats.RotationSpeed;
+            dstManager.SetComponentData(entity, rotative);
+        }
 
-        velocity.maximum = PlayerStats.MaximumSpeed;
-        rotative.rotationSpeed = PlayerStats.RotationSpeed;
+        if (dstManager.HasComponent<VelocityAcceleration>(entity))
+        {
+            VelocityAcceleration velocityAcceleration = dstManager.GetComponentData<VelocityAcceleration>(entity);
+            velocityAcceleration.speed = PlayerStats.Acceleration;
+            dstManager.SetComponentData(entity, velocityAcceleration);
+        }
 
-        velocityAcceleration.speed = PlayerStats.Acceleration;
-        velocityDeacceleration.speed = PlayerStats.DeaccelerationSpeed;
-        velocityDeacceleration.stopThreshold = PlayerStats.StopThreshold;
+        if (dstManager.HasComponent<VelocityDeacceleration>(entity))
+        {
+            VelocityDeacceleration velocityDeacceleration = dstManager.GetComponentData<VelocityDeacceleration>(entity);
+            velocityDeacceleration.speed = PlayerStats.DeaccelerationSpeed;
+            velocityDeacceleration.stopThreshold = PlayerStats.StopThreshold;
+            dstManager.SetComponentData(entity, velocityDeacceleration);
+        }
 
-        dstManager.SetComponentData(entity, velocity);
-        dstManager.SetComponentData(entity, rotative);
-
-        dstManager.SetComponentData(entity, velocityAcceleration);
-        dstManager.SetComponentData(entity, velocityDeacceleration);
+        if (dstManager.HasComponent<InertiaResistance>(entity))
+        {
+            InertiaResistance inertiaResistance = dstManager.GetComponentData<InertiaResistance>(entity);
+            inertiaResistance.maximum = PlayerStats.MaximumInertiaResistance;
+            dstManager.SetComponentData(entity, inertiaResistance);
+        }
     }
 }
