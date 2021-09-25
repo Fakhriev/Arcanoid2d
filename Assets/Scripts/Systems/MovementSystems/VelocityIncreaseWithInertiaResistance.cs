@@ -13,11 +13,12 @@ public class VelocityIncreaseWithInertiaResistance : SystemBase
 
                 if (velocity.isDecreasing == false)
                 {
+                    velocity.vector += velocityAcceleration.vector * (velocityAcceleration.speed + inertiaResistance.value) * deltaTime;
                     float velocityMagnitude = math.sqrt(math.pow(velocity.vector.x, 2) + math.pow(velocity.vector.y, 2));
 
-                    if (velocityMagnitude < velocity.maximum)
+                    if (velocityMagnitude != 0 && velocityMagnitude > velocity.maximum)
                     {
-                        velocity.vector += velocityAcceleration.vector * (velocityAcceleration.speed + inertiaResistance.value) * deltaTime;
+                        velocity.vector = math.normalize(velocity.vector) * velocity.maximum;
                     }
                 }
 

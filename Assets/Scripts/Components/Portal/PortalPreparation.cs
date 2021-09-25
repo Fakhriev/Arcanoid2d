@@ -1,16 +1,8 @@
 using Unity.Entities;
 
 [GenerateAuthoringComponent]
-public struct Portal : IComponentData
+public struct PortalPreparation : IComponentData
 {
     public PortalSide side;
     public float sideDelta;
-}
-
-public enum PortalSide
-{
-    Left,
-    Right,
-    Up,
-    Down
 }

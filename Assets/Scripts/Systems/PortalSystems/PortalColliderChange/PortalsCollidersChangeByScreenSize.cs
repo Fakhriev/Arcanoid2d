@@ -24,31 +24,36 @@ public class PortalsCollidersChangeByScreenSize : SystemBase
         float verticalSize = rightUpPoint.y - leftDownPoint.y;
 
         Entities
-            .ForEach((Entity entity, ref PhysicsCollider physicsCollider, in Portal portal, in PortalNotReady pnr) => {
+            .ForEach((Entity entity, ref PhysicsCollider physicsCollider, in PortalPreparation preparation) => {
 
                 float3 position = new float3(0, 0, 0);
                 float3 size = new float3(1, 1, 1);
+                float3 moveValue = new float3(0, 0, 0);
 
-                switch (portal.side)
+                switch (preparation.side)
                 {
                     case PortalSide.Left:
-                        position = new float3(leftDownPoint.x - 0.5f - portal.sideDelta, 0, 0);
-                        size.y = verticalSize + portal.sideDelta * 2;
+                        position = new float3(leftDownPoint.x - 0.5f - preparation.sideDelta, 0, 0);
+                        size.y = verticalSize + preparation.sideDelta * 2;
+                        moveValue.x = horizontalSize;
                         break;
 
                     case PortalSide.Right:
-                        position = new float3(rightUpPoint.x + 0.5f + portal.sideDelta, 0, 0);
-                        size.y = verticalSize + portal.sideDelta * 2;
+                        position = new float3(rightUpPoint.x + 0.5f + preparation.sideDelta, 0, 0);
+                        size.y = verticalSize + preparation.sideDelta * 2;
+                        moveValue.x = -horizontalSize;
                         break;
 
                     case PortalSide.Up:
-                        position = new float3(0, rightUpPoint.y + 0.5f + portal.sideDelta, 0);
-                        size.x = horizontalSize + portal.sideDelta * 2;
+                        position = new float3(0, rightUpPoint.y + 0.5f + preparation.sideDelta, 0);
+                        size.x = horizontalSize + preparation.sideDelta * 2;
+                        moveValue.y = -verticalSize;
                         break;
 
                     case PortalSide.Down:
-                        position = new float3(0, leftDownPoint.y - 0.5f - portal.sideDelta, 0);
-                        size.x = horizontalSize + portal.sideDelta * 2;
+                        position = new float3(0, leftDownPoint.y - 0.5f - preparation.sideDelta, 0);
+                        size.x = horizontalSize + preparation.sideDelta * 2;
+                        moveValue.y = verticalSize;
                         break;
                 }
 
@@ -63,7 +68,11 @@ public class PortalsCollidersChangeByScreenSize : SystemBase
                     boxCollider->Geometry = boxGeometry;
                 }
 
-                dstManager.RemoveComponent<PortalNotReady>(entity);
+                dstManager.RemoveComponent<PortalPreparation>(entity);
+                dstManager.AddComponentData(entity, new Portal()
+                {
+                    moveValue = moveValue
+                });
 
             }).WithStructuralChanges().Run();
     }

@@ -1,6 +1,6 @@
 using Unity.Entities;
 using Unity.Jobs;
-using UnityEngine;
+using Unity.Transforms;
 
 public class Teleport : SystemBase
 {
@@ -8,24 +8,29 @@ public class Teleport : SystemBase
     {
         EntityManager dstManager = World.EntityManager;
 
-        Entities
-            .WithNone<PortalNotReady>()
-            .ForEach((DynamicBuffer<TriggerBuffer> triggerBuffer, Entity entity, in Portal portal) => {
+        Entities.ForEach((DynamicBuffer<TriggerBuffer> triggerBuffer, Entity entity, in Portal portal) =>
+        {
+            for (int i = 0; i < triggerBuffer.Length; i++)
+            {
+                Entity triggerEntity = triggerBuffer[i].entity;
 
-                for (int i = 0; i < triggerBuffer.Length; i++)
+                if (dstManager.HasComponent<CanTeleport>(triggerEntity) && dstManager.HasComponent<Translation>(triggerEntity))
                 {
-                    if (dstManager.HasComponent<PortalNotReady>(entity))
-                    {
-                        Debug.Log($"123: {portal.side}");
-                    }
+                    CanTeleport canTeleport = dstManager.GetComponentData<CanTeleport>(triggerEntity);
 
-                    if (dstManager.HasComponent<Player>(triggerBuffer[i].entity))
+                    if(canTeleport.immuneTime <= 0)
                     {
-                        Debug.Log($"Portal collide with Player: {portal.side}");
+                        Translation translation = dstManager.GetComponentData<Translation>(triggerEntity);
+
+                        translation.Value += portal.moveValue;
+                        canTeleport.immuneTime = canTeleport.defaultImmuneTime;
+
+                        dstManager.SetComponentData(triggerEntity, translation);
+                        dstManager.SetComponentData(triggerEntity, canTeleport);
                     }
                 }
+            }
 
-            //}).Schedule();
-            }).WithoutBurst().Run();
+        }).WithoutBurst().Run();
     }   
 }

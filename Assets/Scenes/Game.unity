@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 227366396}
   - component: {fileID: 227366395}
   - component: {fileID: 227366394}
-  - component: {fileID: 227366393}
   - component: {fileID: 227366392}
   m_Layer: 0
   m_Name: Portal Right
@@ -157,7 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930152535}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &227366392
 MonoBehaviour:
@@ -171,20 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34729d4e9a047b418aa0a03e7e1888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &227366393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227366390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a1cb404aeac544bbcd3e9ded7b608d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   side: 1
-  sideDelta: 0.07
+  sideDelta: 0.1
 --- !u!114 &227366394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +412,7 @@ GameObject:
   - component: {fileID: 281299470}
   - component: {fileID: 281299471}
   - component: {fileID: 281299464}
+  - component: {fileID: 281299472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -833,6 +821,20 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &281299472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281299457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123268ce4eb53834ca3740dd34d36d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  immuneTime: 0
+  defaultImmuneTime: 0.1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,8 +1071,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 227366391}
   - {fileID: 1465981983}
+  - {fileID: 227366391}
   - {fileID: 1690285752}
   - {fileID: 2130816123}
   m_Father: {fileID: 0}
@@ -1089,7 +1091,6 @@ GameObject:
   - component: {fileID: 1465981981}
   - component: {fileID: 1465981985}
   - component: {fileID: 1465981980}
-  - component: {fileID: 1465981982}
   - component: {fileID: 1465981986}
   m_Layer: 0
   m_Name: Portal Left
@@ -1253,20 +1254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b371ca6728afb654fb6e493b8f5bf69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1465981982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465981979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a1cb404aeac544bbcd3e9ded7b608d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  side: 0
-  sideDelta: 0.07
 --- !u!4 &1465981983
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,7 +1266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930152535}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1465981984
 MonoBehaviour:
@@ -1356,6 +1343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34729d4e9a047b418aa0a03e7e1888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 0
+  sideDelta: 0.1
 --- !u!1 &1690285751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,7 +1358,6 @@ GameObject:
   - component: {fileID: 1690285757}
   - component: {fileID: 1690285756}
   - component: {fileID: 1690285755}
-  - component: {fileID: 1690285754}
   - component: {fileID: 1690285753}
   m_Layer: 0
   m_Name: Portal Up
@@ -1404,20 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34729d4e9a047b418aa0a03e7e1888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1690285754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690285751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a1cb404aeac544bbcd3e9ded7b608d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   side: 2
-  sideDelta: 0.07
+  sideDelta: 0.1
 --- !u!114 &1690285755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1732,7 +1708,6 @@ GameObject:
   - component: {fileID: 2130816128}
   - component: {fileID: 2130816127}
   - component: {fileID: 2130816126}
-  - component: {fileID: 2130816125}
   - component: {fileID: 2130816124}
   m_Layer: 0
   m_Name: Portal Down
@@ -1767,20 +1742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34729d4e9a047b418aa0a03e7e1888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2130816125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130816122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a1cb404aeac544bbcd3e9ded7b608d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   side: 3
-  sideDelta: 0.07
+  sideDelta: 0.1
 --- !u!114 &2130816126
 MonoBehaviour:
   m_ObjectHideFlags: 0
