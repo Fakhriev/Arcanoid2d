@@ -808,9 +808,9 @@ MonoBehaviour:
     y: 0
     z: 0
   m_PrimitiveSize:
-    x: 0.22517501
-    y: 0.22517501
-    z: 0.22517501
+    x: 0.24
+    y: 0.24
+    z: 0.24
   m_PrimitiveOrientation:
     Value:
       x: 0
@@ -818,15 +818,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 0.22517501
-    Radius: 0.112587504
+    Height: 0.24
+    Radius: 0.12
     Axis: 2
   m_Cylinder:
-    Height: 0.22517501
-    Radius: 0.112587504
+    Height: 0.24
+    Radius: 0.12
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 0.112587504
+  m_SphereRadius: 0.12
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
@@ -947,6 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immuneTime: 0
   defaultImmuneTime: 0.1
+  colliderRadius: 0.12
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1097,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immuneTime: 0
-  defaultImmuneTime: 1
+  defaultImmuneTime: 0.1
+  colliderRadius: 0.3
 --- !u!114 &577795270
 MonoBehaviour:
   m_ObjectHideFlags: 0
