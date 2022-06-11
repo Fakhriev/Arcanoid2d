@@ -1,13 +1,31 @@
-using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public void Restart()
+    public static GameManager instance;
+
+    [SerializeField] private Points _points;
+    [SerializeField] private GameState _gameState;
+    [SerializeField] private Parametres _parametres;
+
+    private void Start()
     {
-        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        entityManager.DestroyEntity(entityManager.UniversalQuery);
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        instance = this;
+    }
+
+    public void Loose()
+    {
+        _gameState.Loose();
+    }
+
+    public void AddPoints(int value)
+    {
+        _points.Add(value);
+    }
+
+    public void UpdateParametres(Translation playerTranslation, Rotation rotation, Velocity playerVelocity, CanLaserShoot playerLaser)
+    {
+        _parametres.UpdateAll(playerTranslation, rotation, playerVelocity, playerLaser);
     }
 }

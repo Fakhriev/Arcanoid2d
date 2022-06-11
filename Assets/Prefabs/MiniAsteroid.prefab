@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7212361248187414996}
   - component: {fileID: 2076606980545739011}
   - component: {fileID: 2076606980545739010}
+  - component: {fileID: 4058076863261988314}
   m_Layer: 0
   m_Name: MiniAsteroid
   m_TagString: Untagged
@@ -395,3 +396,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853b71f61fb29a64e87f4d3c8205f723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4058076863261988314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076606980545739009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b1658b337d866499d6db96b48085e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1

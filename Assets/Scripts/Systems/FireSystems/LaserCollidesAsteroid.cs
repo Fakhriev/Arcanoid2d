@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Jobs;
 
-public class LaserCollidesEnemy : SystemBase
+[UpdateBefore(typeof(DestroySystem))]
+public class LaserCollidesAsteroid : SystemBase
 {
-    private HashSet<Entity> _destroyEntities = new HashSet<Entity>();
+    private HashSet<Entity> _removeSpawnEntities = new HashSet<Entity>();
 
     protected override void OnUpdate()
     {
         EntityManager dstManager = World.EntityManager;
-        _destroyEntities.Clear();
 
         Entities.ForEach((DynamicBuffer<TriggerBuffer> triggerBuffer, Entity entity, in Laser laser) =>
         {
@@ -17,17 +17,17 @@ public class LaserCollidesEnemy : SystemBase
             {
                 Entity hitEntity = triggerBuffer[i].entity;
 
-                if (HasComponent<Enemy>(hitEntity) && HasComponent<NeedToDestroy>(hitEntity) == false)
+                if (HasComponent<Enemy>(hitEntity) && HasComponent<Asteroid>(hitEntity) && HasComponent<SpawnFewOnDestroy>(hitEntity))
                 {
-                    _destroyEntities.Add(hitEntity);
+                    _removeSpawnEntities.Add(hitEntity);
                 }
             }
 
         }).WithoutBurst().Run();
 
-        foreach (Entity entity in _destroyEntities)
+        foreach (Entity entity in _removeSpawnEntities)
         {
-            dstManager.AddComponentData(entity, new NeedToDestroy() { });
+            dstManager.RemoveComponent<SpawnFewOnDestroy>(entity);
         }
     }
 }
