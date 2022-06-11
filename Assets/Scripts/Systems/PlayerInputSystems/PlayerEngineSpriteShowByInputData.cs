@@ -6,23 +6,24 @@ public class PlayerEngineSpriteShowByInputData : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entity playerEntity = GetSingletonEntity<Player>();
+        if (TryGetSingletonEntity<Player>(out Entity playerEntity))
+        {
+            EntityManager dstManager = World.EntityManager;
+            InputData inputData = dstManager.GetComponentData<InputData>(playerEntity);
 
-        EntityManager dstManager = World.EntityManager;
-        InputData inputData = dstManager.GetComponentData<InputData>(playerEntity);
+            Entities.ForEach((SpriteRenderer sprite, in PlayerEngineSprite pes) => {
 
-        Entities.ForEach((SpriteRenderer sprite, in PlayerEngineSprite pes) => {
+                if (inputData.moveInput.y > 0 && sprite.enabled == false)
+                {
+                    sprite.enabled = true;
+                }
 
-            if(inputData.moveInput.y > 0 && sprite.enabled == false)
-            {
-                sprite.enabled = true;
-            }
+                if (inputData.moveInput.y == 0 && sprite.enabled)
+                {
+                    sprite.enabled = false;
+                }
 
-            if(inputData.moveInput.y == 0 && sprite.enabled)
-            {
-                sprite.enabled = false;
-            }
-
-        }).WithoutBurst().Run();
+            }).WithoutBurst().Run();
+        }
     }
 }
