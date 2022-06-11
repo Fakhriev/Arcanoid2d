@@ -1,0 +1,19 @@
+{
+    "name": "CollisionSystemsAD",
+    "rootNamespace": "",
+    "references": [
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
+        "GUID:e00140a815de944528348782854abe39",
+        "GUID:5303018c226a3da4db5876dedf4a91c3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
